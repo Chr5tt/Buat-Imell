@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Buat Imel</title>
+  <meta name="description" content="Ucapan ulang tahun untuk Imel.">
+  <meta name="theme-color" id="themeColor" content="#ffe5ec">
+  <link rel="icon" href="favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Dekorasi latar -->
+  <div class="bg-decor" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="hati" style="left:7%;  --size:40px; --dur:14s; --delay:0s"></span>
+    <span class="hati" style="left:43%; --size:30px; --dur:11s; --delay:4s"></span>
+    <span class="hati" style="left:85%; --size:50px; --dur:16s; --delay:2s"></span>
+    <span class="balon" style="left:20%; --warna:rgba(255,182,193,.6); --dur:12s; --delay:1s"></span>
+    <span class="balon" style="left:35%; --warna:rgba(173,216,230,.6); --dur:18s; --delay:5s"></span>
+    <span class="balon" style="left:60%; --warna:rgba(255,236,170,.65); --dur:14s; --delay:3s"></span>
+    <span class="balon" style="left:75%; --warna:rgba(221,160,221,.6); --dur:16s; --delay:7s"></span>
+  </div>
+
+  <div class="panggung">
+  <!-- Pemutar musik -->
+  <aside class="pemutar" id="pemutar" aria-label="Pemutar musik" hidden>
+    <svg class="deck" viewBox="0 0 120 100" role="img" aria-label="Piringan hitam dengan tonearm" focusable="false">
+      <defs>
+        <linearGradient id="plinth" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a3b46"/><stop offset="1" stop-color="#1b1c23"/></linearGradient>
+        <linearGradient id="logam" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6f6f9"/><stop offset="1" stop-color="#9798a4"/></linearGradient>
+      </defs>
+      <rect x="1" y="1" width="118" height="98" rx="16" fill="url(#plinth)"/>
+      <circle cx="50" cy="52" r="44" fill="#0c0d11" opacity=".6"/>
+      <g class="record">
+        <circle cx="50" cy="52" r="42" fill="#14151a"/>
+        <circle cx="50" cy="52" r="37" fill="none" stroke="rgba(255,255,255,.07)"/>
+        <circle cx="50" cy="52" r="32" fill="none" stroke="rgba(255,255,255,.07)"/>
+        <circle cx="50" cy="52" r="27" fill="none" stroke="rgba(255,255,255,.07)"/>
+        <circle cx="50" cy="52" r="22" fill="none" stroke="rgba(255,255,255,.07)"/>
+        <path d="M50 52V10A42 42 0 0 1 79.7 22.3Z" fill="rgba(255,255,255,.08)"/>
+        <path d="M50 52V94A42 42 0 0 1 20.3 81.7Z" fill="rgba(255,255,255,.08)"/>
+        <circle class="label" cx="50" cy="52" r="14"/>
+        <circle cx="50" cy="52" r="10.5" fill="none" stroke="rgba(255,255,255,.35)" stroke-width=".8"/>
+        <circle cx="50" cy="52" r="2.4" fill="#f5f2f7"/>
+      </g>
+      <g class="arm">
+        <line x1="106" y1="16" x2="113" y2="7" stroke="#3d3e48" stroke-width="7" stroke-linecap="round"/>
+        <line x1="106" y1="16" x2="76" y2="52" stroke="url(#logam)" stroke-width="3.2" stroke-linecap="round"/>
+        <line x1="76" y1="52" x2="68" y2="62" stroke="#2a2b33" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="67" cy="63.5" r="1.4" fill="#ffcf5a"/>
+      </g>
+      <circle cx="106" cy="16" r="8" fill="url(#logam)"/>
+      <circle cx="106" cy="16" r="3" fill="#55565f"/>
+    </svg>
+
+    <div class="info">
+      <div class="judul-lagu">
+        <strong>Labyrinth</strong>
+        <span>Taylor Swift</span>
+      </div>
+      <div class="progres-baris">
+        <time id="waktuSekarang">0:00</time>
+        <input type="range" id="progres" min="0" max="100" step="0.1" value="0" aria-label="Posisi lagu">
+        <time id="waktuTotal">0:00</time>
+      </div>
+    </div>
+
+    <div class="kontrol">
+      <button class="btn-bulat btn-mute" id="btnMute" type="button" aria-label="Bisukan suara" aria-pressed="false">
+        <svg class="ikon-suara" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4V5z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg>
+        <svg class="ikon-bisu" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4V5z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6"/></svg>
+      </button>
+      <button class="btn-bulat btn-play" id="btnPlay" type="button" aria-label="Putar lagu">
+        <svg class="ikon-play" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6a1 1 0 001.5.86l11-6.8a1 1 0 000-1.72l-11-6.8A1 1 0 008 5.2z"/></svg>
+        <svg class="ikon-pause" viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4.2" height="14" rx="1.2"/><rect x="13.8" y="5" width="4.2" height="14" rx="1.2"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <main class="kartu" id="kartu">
+
+    <!-- Layar 1: pembuka dan prank -->
+    <section id="layarAwal" class="layar masuk">
+      <div class="foto-bingkai">
+        <img src="assets/img/imel.jpg" alt="Foto Imel tersenyum dengan jepit rambut warna-warni" class="foto-utama" width="150" height="150">
+      </div>
+      <h1>Happy Birthday! 🎂</h1>
+      <p>Selamat ulang tahun, pacarnya Jisung! Semoga panjang umur dan sehat selalu. Tolong jangan tekan tombol merahnya.</p>
+      <button class="tombol tombol-bahaya" id="btnPrank" type="button">Klik kalau mau</button>
+    </section>
+
+    <!-- Layar 2: setelah prank -->
+    <section id="layarTenang" class="layar" hidden>
+      <div class="foto-bingkai">
+        <img src="assets/img/imel.jpg" alt="" class="foto-utama" width="150" height="150">
+      </div>
+      <h1 id="judulTenang">Pasti nggak kaget 🗿</h1>
+      <p id="teksTenang">Intinya, selamat bertambah usia, Brok. Ini slide aibmu.</p>
+      <button class="tombol" id="btnGaleri" type="button">Lihat slide</button>
+    </section>
+
+    <!-- Layar 3: galeri -->
+    <section id="galeri" class="layar" hidden aria-roledescription="carousel" aria-label="Slide kenangan">
+      <div class="slide-area" id="slideArea" aria-live="polite">
+
+        <figure class="slide" data-slide>
+          <img src="assets/img/imel1.jpg" alt="Foto Imel waktu kecil, lagi liat kue datang" class="media" loading="lazy">
+          <figcaption>“Lihat manusia kecil ini. Cupu banget, hahaha.”</figcaption>
+        </figure>
+
+        <figure class="slide" data-slide hidden>
+          <video class="media" loop muted playsinline preload="metadata" disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback" aria-label="Video Imel">
+            <source src="assets/video/imel-video.mp4" type="video/mp4">
+          </video>
+          <figcaption>“Izin curi ya, dari miminnya. Jangan kasih tahu siapa-siapa! 🔪”</figcaption>
+        </figure>
+
+        <figure class="slide" data-slide hidden>
+          <img src="assets/img/imel2.jpg" alt="Foto Imel" class="media" loading="lazy">
+          <figcaption>“Tetap jadi orang baik!”</figcaption>
+        </figure>
+
+        <div class="slide slide-surat" data-slide hidden>
+          <h2>Sekali lagi, selamat ulang tahun! 🎉🎈</h2>
+          <p>Ini bukan slide aib, tenang. Harapan terakhirku (mungkin): semoga di tahun-tahun berikutnya kamu jadi versi terbaik dirimu sendiri. Semoga umur barumu penuh kebahagiaan, urusanmu lancar, dan badanmu sehat.</p>
+          <p>Btw, kamu sudah kepala dua nih, hahaha 👵🏻</p>
+          <p>Maaf ya, webnya tidak secantik kamu. Semoga suka ya! Wish you all the best 🤍</p>
+        </div>
+      </div>
+
+      <nav class="navigasi" aria-label="Navigasi slide">
+        <button class="tombol tombol-kecil tombol-ghost" id="btnBack" type="button" aria-label="Slide sebelumnya">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+          Back
+        </button>
+        <div class="titik" id="titik" role="tablist" aria-label="Pilih slide"></div>
+        <button class="tombol tombol-kecil" id="btnNext" type="button" aria-label="Slide berikutnya">
+          Next
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </nav>
+    </section>
+  </main>
+  </div>
+
+
+  <!-- Overlay jumpscare -->
+  <div class="jumpscare" id="jumpscare" aria-hidden="true">
+    <video id="videoJumpscare" muted playsinline preload="auto">
+      <source src="assets/video/jumpscare.mp4" type="video/mp4">
+    </video>
+    <button class="skip" id="btnSkip" type="button" aria-label="Lewati video">
+      Skip
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M5 5.6v12.8a.9.9 0 001.4.74l9-6.4a.9.9 0 000-1.48l-9-6.4A.9.9 0 005 5.6z"/><rect x="17" y="5" width="2.4" height="14" rx="1.2"/></svg>
+    </button>
+  </div>
+
+  <audio id="audioMusik" src="assets/audio/labyrinth.mp3" preload="auto" loop></audio>
+  <audio id="audioJumpscare" src="assets/audio/jumpscare.mp3" preload="auto"></audio>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
