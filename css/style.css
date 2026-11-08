@@ -369,11 +369,7 @@ figcaption {
 
 /* Ponsel */
 @media (max-width: 699px) {
-  .panggung {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom: calc(var(--tinggi-pemutar) + 24px + env(safe-area-inset-bottom, 0px));
-  }
+  .panggung { display: block; }
   .pemutar {
     position: fixed;
     left: 50%;
