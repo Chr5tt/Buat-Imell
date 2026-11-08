@@ -369,10 +369,6 @@ figcaption {
 
 /* Ponsel */
 @media (max-width: 699px) {
-  body {
-    padding: 16px 12px;
-    min-height: 100dvh;
-  }
   .panggung {
     display: flex;
     justify-content: center;
