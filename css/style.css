@@ -80,8 +80,10 @@ img, video {
   position: relative;
   z-index: 1;
   width: 100%;
+  min-height: calc(100vh - 48px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
@@ -355,7 +357,7 @@ figcaption {
 }
 
 /* Layar lebar */
-@media (min-width: 1180px) {
+@media (min-width: 700px) {
   .pemutar {
     position: fixed;
     top: 24px;
