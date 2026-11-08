@@ -369,16 +369,13 @@ figcaption {
 
 /* Ponsel */
 @media (max-width: 699px) {
-  body {
-    padding: 16px;
-  }
+  body { padding-bottom: calc(var(--tinggi-pemutar) + 32px + env(safe-area-inset-bottom, 0px)); }
   .panggung {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    width: 100%;
+    min-height: calc(100dvh - var(--tinggi-pemutar) - 32px - env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
   }
   .pemutar {
     position: fixed;
@@ -387,12 +384,10 @@ figcaption {
     bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     width: min(calc(100% - 24px), 420px);
     margin: 0;
-    z-index: 100;
   }
   .kartu {
-    max-width: 0 auto;
-    width: 100%;
-    max-width: 380px;
+    margin: 0 auto;
+    width: min(calc(100% - 24px), 420px);
   }
 }
 
