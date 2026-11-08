@@ -387,7 +387,6 @@ figcaption {
   .kartu {
     margin: 0 auto;
     width: min(calc(100% - 24px), 420px);
-    transform: translateY(-30px);
   }
 }
 
