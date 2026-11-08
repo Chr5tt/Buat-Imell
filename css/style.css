@@ -369,13 +369,7 @@ figcaption {
 
 /* Ponsel */
 @media (max-width: 699px) {
-  .panggung {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100dvh - var(--tinggi-pemutar) - 32px - env(safe-area-inset-bottom, 0px));
-    box-sizing: border-box;
-  }
+  .panggung { display: block; }
   .pemutar {
     position: fixed;
     left: 50%;
@@ -385,9 +379,8 @@ figcaption {
     margin: 0;
   }
   .kartu {
-    margin: 0 auto;
-    width: min(calc(100% - 24px), 420px);
-    transform: translateY(-50px);
+    margin-inline: auto;
+    transform: translateY(+100px);
   }
 }
 
