@@ -369,8 +369,17 @@ figcaption {
 
 /* Ponsel */
 @media (max-width: 699px) {
-  body { padding-bottom: calc(var(--tinggi-pemutar) + 32px + env(safe-area-inset-bottom, 0px)); }
-  .panggung { display: block; }
+  body {
+    padding: 16px;
+  }
+  .panggung {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+  }
   .pemutar {
     position: fixed;
     left: 50%;
@@ -378,8 +387,13 @@ figcaption {
     bottom: calc(14px + env(safe-area-inset-bottom, 0px));
     width: min(calc(100% - 24px), 420px);
     margin: 0;
+    z-index: 100;
   }
-  .kartu { margin-inline: auto; }
+  .kartu {
+    max-width: 0 auto;
+    width: 100%;
+    max-width: 380px;
+  }
 }
 
 .pemutar.muncul { animation: pemutarMasuk .7s cubic-bezier(.22, 1, .36, 1) both; }
